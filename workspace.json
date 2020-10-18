@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "projects": {
+    "client-hooks": {
+      "root": "apps/client-hooks",
+      "sourceRoot": "apps/client-hooks/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/client-hooks",
+            "index": "apps/client-hooks/src/index.html",
+            "main": "apps/client-hooks/src/main.tsx",
+            "polyfills": "apps/client-hooks/src/polyfills.ts",
+            "tsConfig": "apps/client-hooks/tsconfig.app.json",
+            "assets": [
+              "apps/client-hooks/src/favicon.ico",
+              "apps/client-hooks/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/client-hooks/src/environments/environment.ts",
+                  "with": "apps/client-hooks/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "client-hooks:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "client-hooks:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/client-hooks/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/client-hooks/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "client-hooks-e2e": {
+      "root": "apps/client-hooks-e2e",
+      "sourceRoot": "apps/client-hooks-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/client-hooks-e2e/cypress.json",
+            "tsConfig": "apps/client-hooks-e2e/tsconfig.e2e.json",
+            "devServerTarget": "client-hooks:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "client-hooks:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/client-hooks-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "schematics": {
+    "@nrwl/react": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "client-hooks"
+}
