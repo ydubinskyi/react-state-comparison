@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-import { useAuth } from './hooks/use-auth';
+import { useAuth } from '@react-state-comparison/auth';
 import AuthFormCard from './components/auth-form-card';
 
 const useStyles = makeStyles((theme) => ({

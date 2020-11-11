@@ -1,20 +1,20 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { useAuth } from '../../auth/hooks/use-auth';
+import { useAuth } from '../use-auth.hook';
 
-function PublicOnlyRoute({ children, ...rest }) {
+function PrivateRoute({ children, ...rest }) {
   const { isAuthenticated } = useAuth();
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        !isAuthenticated ? (
+        isAuthenticated ? (
           children
         ) : (
           <Redirect
             to={{
-              pathname: '/',
+              pathname: '/login',
               state: { from: location },
             }}
           />
@@ -24,4 +24,4 @@ function PublicOnlyRoute({ children, ...rest }) {
   );
 }
 
-export { PublicOnlyRoute };
+export { PrivateRoute };

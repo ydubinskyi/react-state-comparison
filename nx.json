@@ -29,6 +29,12 @@
     "client-hooks-e2e": {
       "tags": [],
       "implicitDependencies": ["client-hooks"]
+    },
+    "api-client": {
+      "tags": []
+    },
+    "auth": {
+      "tags": []
     }
   }
 }

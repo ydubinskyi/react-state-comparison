@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { useAuth } from '../../auth/hooks/use-auth';
-import { client } from '../services/api-client.service';
+import { useAuth } from '@react-state-comparison/auth';
+import { client } from './api-client.service';
 
 function useClient() {
   const { token } = useAuth();

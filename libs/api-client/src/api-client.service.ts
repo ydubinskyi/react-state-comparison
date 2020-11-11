@@ -21,7 +21,7 @@ async function client(
     body: data ? JSON.stringify(data) : undefined,
     headers: {
       Authorization: token ? `Bearer ${token}` : '',
-      'Content-Type': data ? 'application/json' : undefined,
+      'Content-Type': data ? 'application/json' : '',
       ...customHeaders,
     },
     ...customConfig,

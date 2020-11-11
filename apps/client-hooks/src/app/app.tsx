@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import { PublicOnlyRoute } from './shared/components';
+import { PublicOnlyRoute } from '@react-state-comparison/auth';
 
 // pages
 import Home from './home/home.view';

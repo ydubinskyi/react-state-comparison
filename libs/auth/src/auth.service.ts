@@ -1,4 +1,4 @@
-import { client } from '../core/services/api-client.service';
+import { client } from './api-client.service';
 
 import { AuthResponse } from './types';
 import { LoginDetails } from './types/login-details.interface';
