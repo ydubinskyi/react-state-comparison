@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -8,6 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // pages
 import Home from './home/home.view';
 import Login from './auth/login.view';
+import Header from './core/components/header';
 const Register = lazy(() => import('./auth/register.view'));
 
 const FallbackLoader = () => {
@@ -26,22 +28,25 @@ const FallbackLoader = () => {
 
 export const App = () => {
   return (
-    <Container component="main">
-      <Suspense fallback={<FallbackLoader />}>
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Suspense>
-    </Container>
+    <>
+      <CssBaseline />
+      <Header />
+      <Container component="main">
+        <Suspense fallback={<FallbackLoader />}>
+          <Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Suspense>
+      </Container>
+    </>
   );
 };
 
