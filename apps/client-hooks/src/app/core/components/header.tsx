@@ -6,6 +6,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import { useAuth } from '../../auth/hooks/use-auth';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -17,6 +18,7 @@ const useStyles = makeStyles(() =>
 
 const Header = () => {
   const classes = useStyles();
+  const { isAuthenticated, logout } = useAuth();
 
   return (
     <AppBar position="static">
@@ -28,12 +30,26 @@ const Header = () => {
         <Button color="inherit" component={Link} to="/">
           Home
         </Button>
-        <Button color="inherit" component={Link} to="/login">
-          Login
-        </Button>
-        <Button color="inherit" component={Link} to="/register">
-          Register
-        </Button>
+
+        {isAuthenticated ? (
+          <>
+            <Button color="inherit" component={Link} to="/account">
+              My account
+            </Button>
+            <Button color="inherit" onClick={logout}>
+              Logout
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button color="inherit" component={Link} to="/login">
+              Login
+            </Button>
+            <Button color="inherit" component={Link} to="/register">
+              Register
+            </Button>
+          </>
+        )}
       </Toolbar>
     </AppBar>
   );

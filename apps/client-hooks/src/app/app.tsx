@@ -6,6 +6,8 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+import { PublicOnlyRoute } from './shared/components';
+
 // pages
 import Home from './home/home.view';
 import Login from './auth/login.view';
@@ -34,12 +36,13 @@ export const App = () => {
       <Container component="main">
         <Suspense fallback={<FallbackLoader />}>
           <Switch>
-            <Route path="/login">
+            <PublicOnlyRoute path="/login">
               <Login />
-            </Route>
-            <Route path="/register">
+            </PublicOnlyRoute>
+            <PublicOnlyRoute path="/register">
               <Register />
-            </Route>
+            </PublicOnlyRoute>
+
             <Route path="/">
               <Home />
             </Route>
